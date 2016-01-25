@@ -43,6 +43,12 @@ var Usage = func() {
 }
 
 func main() {
+	logging.SetFormatter(format)
+	if *debug {
+		logging.SetLevel(logging.DEBUG, "etcdextract")
+	} else {
+		logging.SetLevel(logging.ERROR, "etcdextract")
+	}
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc)
